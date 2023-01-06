@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           # relative path to the place where source code with Dockerfile is located
-          context: Dockerfile
+          #context: Dockerfile
           # Note: tags has to be all lower-case
           tags: ghcr.io/shussan/pgov5-customimage/crunchy-postgres:ubi8-13.9-0-ts2.9.1
           # build on feature branches, push only on main branch
