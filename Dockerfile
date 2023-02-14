@@ -1,4 +1,4 @@
-FROM registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-13.9-0
+FROM registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-13.9-2
 
 USER root
 
