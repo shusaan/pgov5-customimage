@@ -36,6 +36,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        id: vcs
+        with:
+          ref: ${{ github.event.inputs.tag }}
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
@@ -76,7 +79,7 @@ jobs:
         with:
           context: .
           push: ${{ github.ref_type == 'tag' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.vcs.outputs.commit }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
