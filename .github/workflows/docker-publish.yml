@@ -75,11 +75,13 @@ jobs:
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
         id: build-and-push
+        env:
+          IMAGE_TAG: ${{ github.sha }}
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
           context: .
-          push: ${{ github.ref_type == 'tag' }}
-          tags: ${{ steps.vcs.outputs.commit }}
+          push: ${{ IMAGE_TAG }}
+          tags: ${{ MAGE_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
