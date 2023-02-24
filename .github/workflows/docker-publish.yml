@@ -83,8 +83,8 @@ jobs:
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
           context: .
-          push: $GITHUB_RUN_ID
-          tags: $GITHUB_RUN_ID
+          push: {{ steps.build-and-push.outputs.digest }}
+          tags: {{ steps.build-and-push.outputs.digest }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
