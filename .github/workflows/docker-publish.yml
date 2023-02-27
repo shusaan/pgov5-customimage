@@ -76,18 +76,25 @@ jobs:
         
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
-      - name: Build and push Docker image
-        id: build-and-push
-        # env:
-        #   IMAGE_TAG: ${{ github.sha }}
-        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
+      - name: Build and push
+        uses: docker/build-push-action@v4
         with:
           context: .
-          push: ${{ steps.meta.outputs.tags }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          push: true
+          tags: shusaan/pgov5-customimage:$GITHUB_RUN_ID
+
+      # - name: Build and push Docker image
+      #   id: build-and-push
+      #   # env:
+      #   #   IMAGE_TAG: ${{ github.sha }}
+      #   uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
+      #   with:
+      #     context: .
+      #     push: ${{ steps.meta.outputs.tags }}
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     labels: ${{ steps.meta.outputs.labels }}
+      #     cache-from: type=gha
+      #     cache-to: type=gha,mode=max
           #tags: ${{ steps.meta.outputs.tags }}
 
       # # Sign the resulting Docker image digest except on PRs.
