@@ -80,8 +80,11 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          push: true
-          tags: pgov5-customimage:latest
+          push: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       # - name: Build and push Docker image
       #   id: build-and-push
@@ -95,7 +98,7 @@ jobs:
       #     labels: ${{ steps.meta.outputs.labels }}
       #     cache-from: type=gha
       #     cache-to: type=gha,mode=max
-          #tags: ${{ steps.meta.outputs.tags }}
+      #     #tags: ${{ steps.meta.outputs.tags }}
 
       # # Sign the resulting Docker image digest except on PRs.
       # # This will only write to the public Rekor transparency log when the Docker
