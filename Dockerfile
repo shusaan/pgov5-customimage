@@ -8,7 +8,7 @@ RUN curl -sSL -o /etc/yum.repos.d/timescale_timescaledb.repo "https://packageclo
     microdnf clean all
 RUN sed -i '/\\c "\${PG_DATABASE}"$/a CREATE EXTENSION IF NOT EXISTS timescaledb VERSION '2.9.3';' /opt/crunchy/bin/postgres/setup.sql && \
     sed -i '/SET application_name="container_setup";$/a CREATE EXTENSION IF NOT EXISTS timescaledb VERSION '2.9.3';' /opt/crunchy/bin/postgres/setup.sql
-
+RUN yum --showduplicates list timescaledb
 RUN cat /opt/crunchy/bin/postgres/setup.sql
 USER 26
 # magical user used here: https://github.com/CrunchyData/crunchy-containers/blob/master/build/postgres/Dockerfile
