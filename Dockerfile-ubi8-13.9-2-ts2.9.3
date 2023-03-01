@@ -10,3 +10,8 @@ RUN curl -sSL -o /etc/yum.repos.d/timescale_timescaledb.repo "https://packageclo
 USER 26
 # magical user used here: https://github.com/CrunchyData/crunchy-containers/blob/master/build/postgres/Dockerfile
 # https://github.com/CrunchyData/postgres-operator/issues/2692
+#RUN sed -i "s/^\(shared_preload_libraries.*\)'/\1,timescaledb'/" /opt/crunchy/conf/postgres/postgresql.conf.template
+#RUN sed -i '/\\c "\PG_DATABASE"$/a CREATE EXTENSION IF NOT EXISTS timescaledb;' /opt/crunchy/bin/postgres/setup.sql
+#RUN cat /opt/crunchy/bin/postgres/setup.sql
+#RUN sed -i '/SET application_name="container_setup";$/a CREATE EXTENSION IF NOT EXISTS timescaledb;' /opt/crunchy/bin/postgres/setup.sql
+#RUN cat /opt/crunchy/bin/postgres/setup.sql
