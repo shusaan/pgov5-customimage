@@ -80,7 +80,9 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            "${{ env.GITHUB_REPOSITORY }}/pgov5:${{ env.JEEDOM_SHORT_VERSION}}"
+            "${{ env.GITHUB_REPOSITORY }}:${{ env.GITHUB_SHA}}"
+
+
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
       # repository is public to avoid leaking data.  If you would like to publish
