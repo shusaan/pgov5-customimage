@@ -76,12 +76,11 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: $(date +%s)
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-
+          tags: |
+            "${{ secrets.DOCKER_HUB_USERNAME }}/pgov5-customimage:${{ env.JEEDOM_SHORT_VERSION}}"
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
       # repository is public to avoid leaking data.  If you would like to publish
