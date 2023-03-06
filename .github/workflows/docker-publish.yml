@@ -56,9 +56,11 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Build Docker image
+        run: docker build -t ghcr.io/shusaan/pgov5-customimage:${{ github.sha }} .
+
       - name: Push Docker image to Container Registry
         run: |
-            docker tag ghcr.io/shusaan/pgov5-customimage:${{ github.sha }}
             docker push ghcr.io/shusaan/pgov5-customimage:${{ github.sha }}    
 
       # # Build and push Docker image with Buildx (don't push on PR)
