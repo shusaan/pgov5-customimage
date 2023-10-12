@@ -71,7 +71,7 @@ jobs:
           platforms: linux/arm64
           #platforms: linux/amd64,linux/arm/v7
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/shusaan/pgov5-customimage:ubi8-15.4-0-custom-ts2.10.3_1
+          tags: ghcr.io/shusaan/pgov5-customimage:ubi8-15.4-0-custom-ts2.10.3
           #${{ steps.docker-id.outputs.tags }}             
           labels: ${{ steps.docker-id.outputs.labels }}
 
